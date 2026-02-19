@@ -1,1 +1,2 @@
 1. Tell me what is difference between pages and component in vite react, are they same thing? and also explain me what to put in what folder, how can i get to know that??
+2. Can you help me with context api in react, i just learned it but i am finding difficulty in applying that in my shopZone project, like i need to make a shopping cart for my e commerce webpage, so please help me with implementing the cartContext and cartProvider. like how can i pass product data in provider?
