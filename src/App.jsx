@@ -1,22 +1,26 @@
 import ContactPage from './pages/ContactPage'
 import { ShopPage } from './pages/ShopPage'
 import HomePage from './pages/HomePage'
-import Navbar from './components/NavBar'
+import ProductPage from './pages/ProductPage'
+import MainNavbar from './components/MainNavbar'
+import CartPage from './pages/CartPage'
 
 import './App.css'
-import { Routes, Route} from 'react-router-dom'
+import { Routes, Route } from 'react-router-dom'
 
 function App() {
 
 
   return (
     <>
-    <Navbar/>
-<Routes>
-  <Route path="/" element={<HomePage/>} />
-  <Route path="/contact" element={<ContactPage/>}/>
-  <Route path="/shop" element={<ShopPage/>}/>
-</Routes>
+      <MainNavbar />
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/contact" element={<ContactPage />} />
+        <Route path="/shop" element={<ShopPage />} />
+        <Route path="/product/:id" element={<ProductPage />} />
+        <Route path="/cart" element={<CartPage/>}/>
+      </Routes>
 
     </>
   )
