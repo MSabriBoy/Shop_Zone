@@ -3,11 +3,12 @@ import { CartContext } from "../context/CartContext"
 
 function CartPage(){
 
-    const {cartItems, totalPrice}= useContext(CartContext);
+    const {cartItems, totalPrice, removeFromCart}= useContext(CartContext);
 
     return (
         <div style={{ padding: "60px" }}>
             <h1>Your Cart</h1>
+            <h2>Total Price: ${totalPrice}</h2>
             {
             cartItems.lenght===0
             ? (
@@ -21,6 +22,7 @@ function CartPage(){
                         <h3>{item.title}</h3>
                         <p> Quantity: {item.quantity}</p>
                         <p>Price: {item.price * item.quantity}</p>
+                        <button onClick={()=>removeFromCart(item.id)}>🗑️</button>
                     </div>
 
                     
