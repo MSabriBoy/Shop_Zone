@@ -4,6 +4,7 @@ import HomePage from './pages/HomePage'
 import ProductPage from './pages/ProductPage'
 import MainNavbar from './components/MainNavbar'
 import CartPage from './pages/CartPage'
+import Checkout from './pages/Checkout'
 import useBackNavigation from './hooks/useBackNavigation'
 import './App.css'
 import { Routes, Route } from 'react-router-dom'
@@ -21,6 +22,7 @@ useBackNavigation();
         <Route path="/shop" element={<ShopPage />} />
         <Route path="/product/:id" element={<ProductPage />} />
         <Route path="/cart" element={<CartPage/>}/>
+        <Route path="/checkout" element={<Checkout />} />
       </Routes>
 
     </>
