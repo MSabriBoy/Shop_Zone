@@ -1,8 +1,17 @@
 import { useContext } from "react"
 import { CartContext } from "../context/CartContext"
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function CartPage() {
+    const navigate = useNavigate();
+    const handlePlaceOrder = () => {
+        navigate("/checkout", {
+            state: {
+                cartItems,
+                totalPrice,
+            },
+        });
+    };
 
     const {
         cartItems,
@@ -11,6 +20,8 @@ function CartPage() {
         increaseQuantity,
         decreaseQuantity
     } = useContext(CartContext);
+
+
     if (cartItems.length === 0) {
         return (
             <div style={{ padding: "80px", textAlign: "center" }}>
@@ -35,7 +46,7 @@ function CartPage() {
     return (
         <div style={{ padding: "60px" }}>
             <h1>Your Cart</h1>
-          
+
             <h2 className="cart-top-total">Total Price: ${totalPrice.toFixed(2)}</h2>
             {cartItems.map((item) => (
                 <div key={item.id} className="cart-item">
@@ -58,11 +69,11 @@ function CartPage() {
 
 
             ))}
- <div className="cart-summary">
-            <h2>Total Price: ${totalPrice.toFixed(2)}</h2>
-            <button className="order-btn">Place Order</button>
+            <div className="cart-summary">
+                <h2>Total Price: ${totalPrice.toFixed(2)}</h2>
+                <button className="order-btn" onClick={handlePlaceOrder}>Place Order</button>
 
-</div>
+            </div>
 
         </div>
     )
