@@ -22,27 +22,20 @@ function CartPage() {
     } = useContext(CartContext);
 
 
-    if (cartItems.length === 0) {
-        return (
-            <div style={{ padding: "80px", textAlign: "center" }}>
-                <h1>Your Cart is Empty 🛒</h1>
-                <p>Please add some products to your cart.</p>
-                <Link to="/shop">
-                    <button style={{
-                        padding: "12px 20px",
-                        borderRadius: "8px",
-                        border: "none",
-                        background: "#2563eb",
-                        color: "white",
-                        cursor: "pointer"
-                    }}>
-                        Go to Shop
-                    </button>
-                </Link>
+  if (cartItems.length === 0) {
+  return (
+    <div className="empty-cart-container">
+      <h1>Your Cart is Empty 🛒</h1>
+      <p>Please add some products to your cart.</p>
 
-            </div>
-        );
-    }
+      <Link to="/shop">
+        <button className="shop-btn">
+          Go to Shop
+        </button>
+      </Link>
+    </div>
+  );
+}
     return (
         <div style={{ padding: "60px" }}>
             <h1>Your Cart</h1>
