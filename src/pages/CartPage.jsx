@@ -4,7 +4,13 @@ import { Link } from "react-router-dom";
 
 function CartPage() {
 
-    const { cartItems, totalPrice, removeFromCart } = useContext(CartContext);
+    const {
+        cartItems,
+        totalPrice,
+        removeFromCart,
+        increaseQuantity,
+        decreaseQuantity
+    } = useContext(CartContext);
     if (cartItems.length === 0) {
         return (
             <div style={{ padding: "80px", textAlign: "center" }}>
@@ -12,52 +18,52 @@ function CartPage() {
                 <p>Please add some products to your cart.</p>
                 <Link to="/shop">
                     <button style={{
-                                padding: "12px 20px",
-                                borderRadius: "8px",
-                                border: "none",
-                                background: "#2563eb",
-                                color: "white",
-                                cursor: "pointer"}}>
+                        padding: "12px 20px",
+                        borderRadius: "8px",
+                        border: "none",
+                        background: "#2563eb",
+                        color: "white",
+                        cursor: "pointer"
+                    }}>
                         Go to Shop
                     </button>
                 </Link>
-                
+
             </div>
         );
     }
     return (
         <div style={{ padding: "60px" }}>
             <h1>Your Cart</h1>
-            <h2>Total Price: ${totalPrice}</h2>
-            {
-                cartItems.lenght === 0
-                    ? (
-                        <p>Your cart is empty.</p>
+          
+            <h2 className="cart-top-total">Total Price: ${totalPrice.toFixed(2)}</h2>
+            {cartItems.map((item) => (
+                <div key={item.id} className="cart-item">
+                    <img src={item.thumbnail} alt={item.title} width="80" />
+                    <h3>{item.title}</h3>
+                    <p> Quantity: {item.quantity}</p>
+                    <p>Price: {(item.price * item.quantity).toFixed(2)}</p>
+                    <div className="cart-qty">
+                        {item.quantity > 1 ? (
+                            <button onClick={() => decreaseQuantity(item.id)}>-</button>
+                        ) : (
+                            <button onClick={() => removeFromCart(item.id)}>🗑️</button>
+                        )}
 
-                    ) : (
-                        <>
-                            {cartItems.map((item) => (
-                                <div key={item.id} style={{ marginBottom: "20px" }}>
-                                    <img src={item.thumbnail} alt={item.title} width="80" />
-                                    <h3>{item.title}</h3>
-                                    <p> Quantity: {item.quantity}</p>
-                                    <p>Price: {item.price * item.quantity}</p>
-                                    <button onClick={() => removeFromCart(item.id)}>🗑️</button>
-                                </div>
+                        <span>{item.quantity}</span>
+
+                        <button onClick={() => increaseQuantity(item.id)}>+</button>
+                    </div>
+                </div>
 
 
-                            ))}
-                            <h2>Total Price: ${totalPrice}</h2>
-                            <button style={{
-                                padding: "12px 20px",
-                                borderRadius: "8px",
-                                border: "none",
-                                background: "#2563eb",
-                                color: "white",
-                                cursor: "pointer"
-                            }}>Place Order</button>
-                        </>)
-            }
+            ))}
+ <div className="cart-summary">
+            <h2>Total Price: ${totalPrice.toFixed(2)}</h2>
+            <button className="order-btn">Place Order</button>
+
+</div>
+
         </div>
     )
 }

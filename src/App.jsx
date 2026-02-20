@@ -4,12 +4,13 @@ import HomePage from './pages/HomePage'
 import ProductPage from './pages/ProductPage'
 import MainNavbar from './components/MainNavbar'
 import CartPage from './pages/CartPage'
-
+import useBackNavigation from './hooks/useBackNavigation'
 import './App.css'
 import { Routes, Route } from 'react-router-dom'
 
 function App() {
 
+useBackNavigation();
 
   return (
     <>
